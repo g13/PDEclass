@@ -196,7 +196,7 @@ def set_boundary(u, lr, btype, f, dx = 0.0, r = None):
     if btype == 1:
         u[_ex] = set_neumann(u[_in], f, dx)
     if btype == 2:
-        u[-ex] = set_robin(u[_on], u[_in], f, r, dx)
+        u[_ex] = set_robin(u[_on], u[_in], f, r, dx)
 
 def set_robin(u_on, u_in, f, r, dx):
     u_ex = (f - u_on)*(2*dx)/r + u_in
