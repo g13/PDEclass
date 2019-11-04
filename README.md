@@ -1,8 +1,8 @@
-# PDEclass
-# PC: install python3 
-# MAC and PC: install python packages: numpy, matplotlib and their depenencies
-### how to run:
-# open terminal
+# PDE solver
+### install python3 (through Anaconda, recommended)
+### install packages: numpy, matplotlib and their depenencies
+## to run examples:
+### open terminal/cmd
 python PDE2.py
-# for IPython
+### for IPython
 run PDE2
