@@ -8,20 +8,27 @@ run Anaconda Prompt and create a new environment(optional)
 
 ### install packages: numpy, matplotlib and their depenencies
 In the Anaconda Prompt
-
-activate *new_environment* (optional)
-
-> conda install *package_name*
-
+go to the newly created environment if you have created one
+```bash
+activate *new_environment* 
+```
+```bash
+conda install *package_name*
+```
 Jupyter lab is a recommended environment, to install:
-
-> conda install -c conda-forge jupyterlab
-
+```bash
+conda install -c conda-forge jupyterlab
+```
 to run jupyter lab:
-
-> jupyter lab
+```bash
+jupyter lab
+```
 ## to run examples:
-### open terminal/cmd
-> python PDE2.py
-### for IPython or Jupyter Notebook in Jupyter lab
-> run PDE2
+### In terminal/cmd
+```bash
+python PDE2.py
+```
+### In Jupyter lab, IPython or Jupyter Notebook
+```python
+run PDE2
+```
