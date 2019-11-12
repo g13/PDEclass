@@ -11,17 +11,17 @@ In the Anaconda Prompt
 
 activate *new_environment* (optional)
 
->> conda install *package_name*
+> conda install *package_name*
 
 Jupyter lab is a recommended environment, to install:
 
->> conda install -c conda-forge jupyterlab
+> conda install -c conda-forge jupyterlab
 
 to run jupyter lab:
 
->> jupyter lab
+> jupyter lab
 ## to run examples:
 ### open terminal/cmd
->> python PDE2.py
+> python PDE2.py
 ### for IPython or Jupyter Notebook in Jupyter lab
->> run PDE2
+> run PDE2
