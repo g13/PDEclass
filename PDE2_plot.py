@@ -26,4 +26,4 @@ def movie(u, nt, x, title):
     for_it = 10 # constant dont change it
     m = animation.FuncAnimation(fig, capture, frames = nt, interval = 20, fargs = (line, for_it, u, x), blit = True)
     HTML(m.to_html5_video())
-    #m.save(title+".mp4")
+    m.save(title+".mp4")

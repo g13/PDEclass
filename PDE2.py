@@ -45,7 +45,7 @@ def run_wave(dt, nx, x0, x1, C2, btype, nt, init, vel, left_b, right_b, left_r, 
         u[:,i] = wave.step(i*dt)
     plot(u, dt, wave.dx, title)
     if mov:
-        m = movie(u, np.arange(nt)*dt, wave.x[1:wave.nx-1], title)
+        movie(u, np.arange(nt)*dt, wave.x[1:wave.nx-1], title)
 
 if __name__ == '__main__':
     x0 = -np.pi
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     title = 'wave flip'
     nt = 200
     nx = 100
-    run_wave(dt, nx, x0, x1, C2, btype, nt, init, vel, left_b, right_b, left_r, right_r, title)
+    run_wave(dt, nx, x0, x1, C2, btype, nt, init, vel, left_b, right_b, left_r, right_r, title, True)
 
     init_h = lambda x: np.exp(-np.power(x,2)/20.0)
     nt = 2000
