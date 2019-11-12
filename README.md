@@ -7,19 +7,20 @@ In windows:
 run Anaconda Prompt and create a new environment(optional)
 
 ### install packages: numpy, matplotlib and their depenencies
-In the Anaconda Prompt
+In the Anaconda Prompt,
 go to the newly created environment if you have created one
 ```bash
 activate *new_environment* 
 ```
+and install by:
 ```bash
 conda install *package_name*
 ```
-Jupyter lab is a recommended environment, to install:
+Jupyter Lab is a recommended environment to present python code, to install:
 ```bash
 conda install -c conda-forge jupyterlab
 ```
-to run jupyter lab:
+to run Jupyter Lab:
 ```bash
 jupyter lab
 ```
