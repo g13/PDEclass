@@ -4,15 +4,30 @@ from PDE2_plot import *
 # initial velcity
 def vel(x):
     #return 1 + np.sin(x)
-    #return 1 + np.sin(x)
+    #half = x.size//2
+    #return np.hstack((np.zeros(half), np.ones(x.size-half)))
     return np.zeros(x.shape)
+
 # initial data
 def init(x):
     #return 1 + np.sin(x)
-    return np.exp(-np.power(x,2)/0.1)
+    half = x.size//2
+    #return np.hstack((np.zeros(half), np.ones(x.size-half)))
+    f = np.zeros(x.shape)
+    f[half-2:half+2] = 1
+    return f
+    #return np.exp(-np.power(x,2)/0.1)
     #return np.zeros(x.shape)
 
 #  u + left(right)_r*ux = left(right)_b
+def left_b(t):
+    #return np.power(t, 1)
+    return 0
+
+def right_b(t):
+    #return np.power(t, 1)
+    return 0
+
 def left_r(t):
     #return np.power(t, 1)
     return 0
@@ -21,14 +36,7 @@ def right_r(t):
     #return np.power(t, 1)
     return 0
 
-def left_b(t):
-    #return np.power(t, 2)
-    return 0
-
-def right_b(t):
-    #return np.power(t, 2)
-    return 0
-
+## run heat equation simulation 
 def run_heat(dt, nx, x0, x1, D, btype, nt, init, left_b, right_b, left_r, right_r, title = 'heat', mov = False):
     heat = forward_Euler(dt, nx, init, left_b, right_b, x0, x1, btype, D, left_r, right_r)
     u = np.zeros((nx, nt), dtype=float)
@@ -38,6 +46,7 @@ def run_heat(dt, nx, x0, x1, D, btype, nt, init, left_b, right_b, left_r, right_
     if mov:
         movie(u, np.arange(nt)*dt, heat.x[1:heat.nx-1], title)
 
+## run wave equation simulation 
 def run_wave(dt, nx, x0, x1, C2, btype, nt, init, vel, left_b, right_b, left_r, right_r, title = 'wave', mov = False):
     wave = leap_frog(dt, nx, init, left_b, right_b, x0, x1, btype, C2, vel, left_r, right_r)
     u = np.zeros((nx, nt), dtype=float)
@@ -58,21 +67,21 @@ if __name__ == '__main__':
     title = 'wave flip'
     nt = 200
     nx = 100
-    run_wave(dt, nx, x0, x1, C2, btype, nt, init, vel, left_b, right_b, left_r, right_r, title, True)
+    #run_wave(dt, nx, x0, x1, C2, btype, nt, init, vel, left_b, right_b, left_r, right_r, title, True)
 
     init_h = lambda x: np.exp(-np.power(x,2)/20.0)
-    nt = 2000
+    nt = 200
     nx = 50
     title = 'heat dissipate'
-    run_heat(dt, nx, x0, x1, D, btype, nt, init_h, left_b, right_b, left_r, right_r, title)
+    run_heat(dt, nx, x0, x1, D, btype, nt, init, left_b, right_b, left_r, right_r, title, True)
 
     btype = np.array([1, 1]) # 0 for dirichlet, 1 for neumann, 2 for robin
-    left_bn = lambda x: 0
-    right_bn = lambda x: 0
+    left_bn = lambda t: 0
+    right_bn = lambda t: 0
     nt = 200
     nx = 100
     title = 'wave reflect'
-    run_wave(dt, nx, x0, x1, C2, btype, nt, init, vel, left_bn, right_bn, left_r, right_r, title)
+    #run_wave(dt, nx, x0, x1, C2, btype, nt, init, vel, left_bn, right_bn, left_r, right_r, title, True)
 
     left_bn = lambda x: 0
     right_bn = lambda x: 0
@@ -80,7 +89,7 @@ if __name__ == '__main__':
     nt = 2000
     nx = 50
     title = 'heat insolation'
-    run_heat(dt, nx, x0, x1, D, btype, nt, init_h, left_bn, right_bn, left_r, right_r, title)
+    #run_heat(dt, nx, x0, x1, D, btype, nt, init_h, left_bn, right_bn, left_r, right_r, title)
 
     btype = np.array([1, 1]) # 0 for dirichlet, 1 for neumann, 2 for robin
     left_bn = lambda x: 0
@@ -90,4 +99,4 @@ if __name__ == '__main__':
     dt = dt*2.0
     C2 = 1.01/np.power(dt/((x1-x0)/(nx-1)),2)
     title = 'unstable wave'
-    run_wave(dt, nx, x0, x1, C2, btype, nt, init, vel, left_bn, right_bn, left_r, right_r, title)
+    #run_wave(dt, nx, x0, x1, C2, btype, nt, init, vel, left_bn, right_bn, left_r, right_r, title)

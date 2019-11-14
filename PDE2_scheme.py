@@ -99,7 +99,7 @@ class forward_Euler(PDE2_scheme):
         # set initial data
         self.u[self.lb:self.rb,0] = self.init(self.x[self.lb:self.rb])
         # print growth factor
-        print(f'growth factor = {2*self.coef:.3f}')
+        print(f'stable if < 1:  {2*self.coef:.3f}')
     # step forward in time
     def step(self, t):
         # set alias
@@ -146,10 +146,11 @@ class leap_frog(PDE2_scheme):
         # alias
         u = self.u
         # set u at t=dt with vel data
+        vel = self.vel(self.x[self.lb:self.rb])
         for i in range(self.lb, self.rb):
-            u[i,1] = u[i,0] + self.dt * self.vel(self.x[i]) + 0.5*self.coef*(u[i+1,0] - 2*u[i,0] + u[i-1,0])
+            u[i,1] = u[i,0] + self.dt * vel[i-self.lb] + 0.5*self.coef*(u[i+1,0] - 2*u[i,0] + u[i-1,0])
         # print growth factor
-        print(f'growth factor = {self.coef:.3f}')
+        print(f'stable if < 1: {self.coef:.3f}')
     # step forward in time
     def step(self, t):
         # alias
